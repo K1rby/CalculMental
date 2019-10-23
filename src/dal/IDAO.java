@@ -1,4 +1,4 @@
-package jdbc.dal;
+package dal;
 
 import java.io.IOException;
 import java.sql.SQLException;
