@@ -1,7 +1,6 @@
 package dal;
 
-import bo.User;
-import dal.jdbc.UserDAO;
+import dao.JoueurDAO;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -43,11 +42,11 @@ public class DAOFactory {
 		return connection;
 	}
 	
-	public static IUserDAO getUserDAO() {
+	public static IUserDAO getJoueurDAO() {
 		IUserDAO dao;
 		switch ( mode ) {
 			case "JDBC":
-				dao = new UserDAO();
+				dao = new JoueurDAO();
 				break;
 			case "JPA":
 			default:
