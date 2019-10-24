@@ -34,7 +34,7 @@
 									<i class="fa fa-user"></i>
 								</span>
                     <input class="input-group-field" type="text" placeholder="Login" name="form-username"
-                           value="${userBean.login}"/>
+                           value="${userBean.joueur.login}"/>
                 </div>
                 <div class="input-group">
 								<span class="input-group-label">

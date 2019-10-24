@@ -13,7 +13,7 @@ import java.io.IOException;
 public class LoginController extends HttpServlet {
 
     private static final String PAGE_LOGIN_JSP = "/WEB-INF/jsp/login.jsp";
-    private static final String PAGE_LIST_SERVLET = "/contacts";
+    private static final String PAGE_LIST_SERVLET = "/home";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {

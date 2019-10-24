@@ -4,10 +4,17 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <context-param>
+        <param-name>DS_MODE</param-name>
+        <param-value>JDBC</param-value>
+    </context-param>
+    <context-param>
+        <param-name>DS_NAME</param-name>
+        <param-value>java:/comp/env/calculMental</param-value>
+    </context-param>
     <session-config>
         <session-timeout>5</session-timeout>
     </session-config>
-
     <welcome-file-list>
         <welcome-file>login</welcome-file>
     </welcome-file-list>
