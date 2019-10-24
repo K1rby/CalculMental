@@ -3,16 +3,18 @@ package dao;
 import bo.Partie;
 import dal.DAOFactory;
 import dal.IDAO;
+import dal.IPartieDAO;
 
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PartieDAO implements IDAO<Long, Partie> {
+public class PartieDAO implements IDAO<Long, Partie>, IPartieDAO<Long, Partie> {
 
     private static final String INSERT_QUERY = "INSERT INTO partie (score, id_joueur ) VALUES (?, ?)";
     private static final String UPDATE_QUERY = "UPDATE partie SET score = ?, id_joueur = ? WHERE id = ?";
+    private static final String TOP_SCORE_QUERY = "SELECT TOP 10 score from partie";
     private static final String DELETE_QUERY = "DELETE FROM agence WHERE id= ?";
     private static final String FIND_QUERY = "SELECT * FROM agence WHERE id= ?";
     private static final String FIND_ALLQUERY = "SELECT * FROM partie";
@@ -80,6 +82,28 @@ public class PartieDAO implements IDAO<Long, Partie> {
                         partie.setScore(rs.getInt("score"));
                         partie.setId(rs.getInt("id"));
                         partie.setId_joueur(rs.getInt("id_joueur"));
+                        list.add(partie);
+                    }
+                }
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public List<Partie> topScore() throws SQLException {
+
+        List<Partie> list = new ArrayList<>();
+        Connection connection = DAOFactory.getJDBCConnection();
+
+        if (connection != null) {
+
+            try(PreparedStatement ps = connection.prepareStatement(TOP_SCORE_QUERY)) {
+                try(ResultSet rs = ps.executeQuery()) {
+
+                    while (rs.next()) {
+                        Partie partie = new Partie();
+                        partie.setScore(rs.getInt("score"));
                         list.add(partie);
                     }
                 }

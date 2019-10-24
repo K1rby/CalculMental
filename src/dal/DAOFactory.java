@@ -1,6 +1,7 @@
 package dal;
 
 import dao.JoueurDAO;
+import dao.PartieDAO;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -47,6 +48,19 @@ public class DAOFactory {
 		switch ( mode ) {
 			case "JDBC":
 				dao = new JoueurDAO();
+				break;
+			case "JPA":
+			default:
+				//TODO
+				dao = null;
+		}
+		return dao;
+	}
+	public static IPartieDAO getTopScoreDAO() {
+		IPartieDAO dao;
+		switch ( mode ) {
+			case "JDBC":
+				dao = new PartieDAO();
 				break;
 			case "JPA":
 			default:

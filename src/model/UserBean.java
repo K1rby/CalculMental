@@ -15,7 +15,7 @@ public class UserBean implements Serializable {
 	public static final String ATT_SESSION_CONNECTED_USER = "connectedUser";
 
 	private Joueur joueur;
-	private String authResult;
+		private String authResult;
 	
 	public UserBean() { }
 
