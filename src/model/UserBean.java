@@ -13,6 +13,8 @@ public class UserBean implements Serializable {
 	private String login;
 	private String password;
 	private String authResult;
+	private String currentExpression;
+
 //	private String[] array;
 //	private Stack<Double> stack = new Stack<Double>();
 //	private Double resultat;
@@ -46,8 +48,16 @@ public class UserBean implements Serializable {
 	public void setAuthResult( String authResult ) {
 		this.authResult = authResult;
 	}
-	
-	public boolean isConnected( HttpServletRequest request ) {
+
+	public String getCurrentExpression() {
+		return currentExpression;
+	}
+
+	public void setCurrentExpression(String currentExpression) {
+		this.currentExpression = currentExpression;
+	}
+
+	public boolean isConnected(HttpServletRequest request ) {
 		Boolean isConnected = ( Boolean ) request.getSession().getAttribute( ATT_SESSION_IS_CONNECTED );
 		return isConnected != null ? isConnected :false;
 	}
@@ -64,9 +74,46 @@ public class UserBean implements Serializable {
 		}
 	}
 
-	public Double calculExpression() {
-		String expression = "4.25 8 - 3 rac *";
+	public String generationExpression(){
+		String expression = "";
+		String[] op1arg = {"rac", "inv"};
+		String[] op2arg = {"+", "-", "*", "/"};
+		int count = 0;
+		int i;
+		int choice;
+		int flag = (int)(Math.random() * 2);
+		Double add;
+		for (i = 0; i < 5; i++) {
+			if (count == 0) {
+				add = (double) Math.round((Math.random() * 100) * 100d) / 100d;
+				count++;
+				expression = expression + add.toString() + " ";
+			} else if (count == 1) {
+				if (flag == 0) {
+					choice = (int)(Math.random() * 2);
+					expression = expression + op1arg[choice] + " ";
+					if (i < 4) {
+						flag = 1;
+					}
+				} else {
+					add = (double) Math.round((Math.random() * 100) * 100d) / 100d;
+					count++;
+					expression = expression + add.toString() + " ";
+					flag = 0;
+				}
+			} else {
+				choice = (int)(Math.random() * 4);
+				expression = expression + op2arg[choice] + " ";
+				count--;
+			}
+		}
+		expression = expression.substring(0, expression.length() -1);
+		setCurrentExpression(expression);
+		return expression;
+	}
 
+	public Double calculExpression() {
+		String expression = getCurrentExpression();
 		String []array = expression.split(" ", 6);
 		Stack<Double> stack = new Stack<Double>();
 		Double resultat;
