@@ -14,7 +14,7 @@ public class PartieDAO implements IDAO<Long, Partie>, IPartieDAO<Long, Partie> {
 
     private static final String INSERT_QUERY = "INSERT INTO partie (score, id_joueur ) VALUES (?, ?)";
     private static final String UPDATE_QUERY = "UPDATE partie SET score = ?, id_joueur = ? WHERE id = ?";
-    private static final String TOP_SCORE_QUERY = "SELECT TOP 10 score from partie";
+    private static final String TOP_SCORE_QUERY = "SELECT score from partie order by score DESC limit 10";
     private static final String DELETE_QUERY = "DELETE FROM agence WHERE id= ?";
     private static final String FIND_QUERY = "SELECT * FROM agence WHERE id= ?";
     private static final String FIND_ALLQUERY = "SELECT * FROM partie";

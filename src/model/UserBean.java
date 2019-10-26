@@ -16,9 +16,10 @@ public class UserBean implements Serializable {
 	public static final String ATT_SESSION_CONNECTED_USER = "connectedUser";
 
 	private Joueur joueur;
-		private String authResult;
+	private String authResult;
 	
 	private String currentExpression;
+
 	public UserBean() { }
 
 	public Joueur getJoueur() {
@@ -60,6 +61,7 @@ public class UserBean implements Serializable {
 			joueur = DAOFactory.getJoueurDAO().authenticate( login, password );
 			if ( null != joueur ) {
 				request.getSession().setAttribute( ATT_SESSION_CONNECTED_USER, joueur );
+				request.getSession().setAttribute("login", login);
 				authResult = "Bienvenue " + login + "!";
 			} else {
 				joueur = new Joueur(login, password);

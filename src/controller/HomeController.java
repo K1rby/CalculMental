@@ -13,6 +13,7 @@ import java.io.IOException;
 public class HomeController extends HttpServlet {
 
     private static final String PAGE_HOME_JSP = "/WEB-INF/jsp/home.jsp";
+    private static final String PAGE_RESULT_SERVLET = "/WEB-INF/jsp/result.jsp";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
@@ -21,5 +22,6 @@ public class HomeController extends HttpServlet {
         req.setAttribute( "homeBean", bean );
         bean.loadTopScore( req );
         req.getServletContext().getRequestDispatcher( PAGE_HOME_JSP ).forward( req, resp );
+        resp.sendRedirect( req.getContextPath() + PAGE_RESULT_SERVLET );
     }
 }

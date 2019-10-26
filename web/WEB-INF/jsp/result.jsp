@@ -1,18 +1,11 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: quentin
-  Date: 24/10/19
-  Time: 16:20
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <html>
 <head>
-    <title>Home</title>
+    <title>Resultat</title>
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+    <script src="https://kit.fontawesome.com/bc8750f867.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css"
           href="${pageContext.request.contextPath}/vendor/foundation-6.5.1/css/foundation.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
@@ -31,24 +24,34 @@
     </div>
 </div>
 <div class="row small-5 small-centered">
-    <h1>Meilleurs Score</h1>
     <table>
         <thead>
         <tr>
             <th>N°</th>
-            <th>Score</th>
+            <th>Réponse</th>
+            <th>Solution</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="item" items="${homeBean.partie}" varStatus="loop">
+        <c:forEach var="mapV" items="${resultReponse}" varStatus="loop">
             <tr>
                 <td>${loop.count}</td>
-                <td>${item.score}</td>
+                <td> ${mapV.key} </td>
+                <td> ${mapV.value}</td>
+                <td>
+                    <c:if test="${mapV.key == mapV.value}">
+                        <i style="font-size: 30px; color: green;" class="fas fa-check-circle"></i>
+                    </c:if>
+                    <c:if test="${mapV.key != mapV.value}">
+                        <i style="font-size: 30px; color: red;"class="fas fa-window-close"></i>
+                    </c:if>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    <a href="<c:url value="/resultat"/>" class="button">Nouvelle partie</a>
+    <a href="<c:url value="/home"/>" class="button">Retour a l'accueil</a>
 </div>
 <script src="${pageContext.request.contextPath}/vendor/foundation-6.5.1/js/vendor/jquery.js"></script>
 <script src="${pageContext.request.contextPath}/vendor/foundation-6.5.1/js/vendor/foundation.min.js"></script>

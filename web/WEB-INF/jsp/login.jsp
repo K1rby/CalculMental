@@ -48,6 +48,7 @@
             <button class="button expanded">Valider</button>
         </form>
     </c:if>
+    <p>${userBean.generationExpression()}</p>
     <p>${userBean.calculExpression()}</p>
 
 </div>
