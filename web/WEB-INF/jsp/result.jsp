@@ -51,6 +51,7 @@
         </c:forEach>
         </tbody>
     </table>
+    <h1>Bravo, vous avez réaliser un score de ${score}</h1>
     <a href="<c:url value="/home"/>" class="button">Retour a l'accueil</a>
 </div>
 <script src="${pageContext.request.contextPath}/vendor/foundation-6.5.1/js/vendor/jquery.js"></script>

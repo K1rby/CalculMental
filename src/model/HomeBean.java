@@ -1,12 +1,9 @@
 package model;
 
-import bo.Joueur;
 import bo.Partie;
 import dal.DAOFactory;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -70,7 +67,7 @@ public class HomeBean implements Serializable {
             request.getSession().setAttribute("resultat", resultat);
 
         } catch ( SQLException e ) {
-            authResult = "Identification échouée : Pb de connexions à la base de données !";
+            authResult = "Pb de connexions à la base de données !";
         }
 
     }
