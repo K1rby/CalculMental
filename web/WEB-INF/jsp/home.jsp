@@ -31,7 +31,7 @@
     </div>
 </div>
 <div class="row small-5 small-centered">
-    <h1>Meilleurs Score</h1>
+    <h1>Meilleurs Scores</h1>
     <table>
         <thead>
         <tr>
