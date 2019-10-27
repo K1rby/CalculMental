@@ -66,7 +66,7 @@ public class ResultBean implements Serializable {
             Map.Entry mapentry = (Map.Entry) iterator.next();
 
             if (mapentry.getKey().equals(mapentry.getValue())) {
-                score = score + 2000;
+                score = score + 4000;
             }
         }
 

@@ -41,10 +41,31 @@
         </thead>
         <tbody>
         <c:forEach var="item" items="${homeBean.partie}" varStatus="loop">
-            <tr>
-                <td>${loop.count}</td>
-                <td>${item.score}</td>
-            </tr>
+            <c:if test="${loop.index == 0}">
+                <tr style="background-color: yellow">
+                    <td>${loop.count}</td>
+                    <td>${item.score}</td>
+                </tr>
+            </c:if>
+            <c:if test="${loop.index == 1}">
+                <tr style="background-color: slategray">
+                    <td>${loop.count}</td>
+                    <td>${item.score}</td>
+                </tr>
+            </c:if>
+            <c:if test="${loop.index == 2}">
+                <tr style="background-color: maroon">
+                    <td>${loop.count}</td>
+                    <td>${item.score}</td>
+                </tr>
+            </c:if>
+            <c:if test="${loop.index > 2}">
+                <tr>
+                    <td>${loop.count}</td>
+                    <td>${item.score}</td>
+                </tr>
+            </c:if>
+
         </c:forEach>
         </tbody>
     </table>
