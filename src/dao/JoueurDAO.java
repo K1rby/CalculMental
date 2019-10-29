@@ -20,8 +20,8 @@ public class JoueurDAO implements IDAO<Long, Joueur>, IUserDAO<Long, Joueur> {
     private static final String AUTHENT_QUERY = "SELECT * FROM joueur WHERE pseudo = ? AND password = ?";
 
     @Override
-    public void create(Joueur object) throws SQLException, IOException, ClassNotFoundException {
-
+    public int create(Joueur object) throws SQLException, IOException, ClassNotFoundException {
+        int temp = 0;
         Connection connection = DAOFactory.getJDBCConnection();
         if (connection != null) {
             try (PreparedStatement ps = connection.prepareStatement(INSERT_QUERY, Statement.RETURN_GENERATED_KEYS)) {
@@ -34,10 +34,11 @@ public class JoueurDAO implements IDAO<Long, Joueur>, IUserDAO<Long, Joueur> {
                     if (rs.next()) {
                         object.setId(rs.getInt(1));
                     }
-
+                    temp = rs.getInt(1);
                 }
             }
         }
+        return temp;
     }
 
     @Override
@@ -102,6 +103,7 @@ public class JoueurDAO implements IDAO<Long, Joueur>, IUserDAO<Long, Joueur> {
                 try ( ResultSet rs = ps.executeQuery() ) {
                     if ( rs.next() ) {
                         joueur = new Joueur();
+                        joueur.setId( rs.getInt("id_joueur"));
                         joueur.setPseudo( rs.getString( "pseudo" ) );
                         joueur.setPassword( rs.getString( "password" ) );
                     }

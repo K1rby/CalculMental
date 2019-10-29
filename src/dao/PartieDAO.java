@@ -20,8 +20,8 @@ public class PartieDAO implements IDAO<Long, Partie>, IPartieDAO<Long, Partie> {
     private static final String FIND_ALLQUERY = "SELECT * FROM partie";
 
     @Override
-    public void create(Partie object) throws SQLException, IOException, ClassNotFoundException {
-
+    public int create(Partie object) throws SQLException, IOException, ClassNotFoundException {
+        int temp = 0;
         Connection connection = DAOFactory.getJDBCConnection();
         if (connection != null) {
             try (PreparedStatement ps = connection.prepareStatement(INSERT_QUERY, Statement.RETURN_GENERATED_KEYS)) {
@@ -34,10 +34,11 @@ public class PartieDAO implements IDAO<Long, Partie>, IPartieDAO<Long, Partie> {
                     if (rs.next()) {
                         object.setId(rs.getInt(1));
                     }
-
+                    temp =  rs.getInt(1);
                 }
             }
         }
+        return temp;
     }
 
     @Override
