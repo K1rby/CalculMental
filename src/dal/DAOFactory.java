@@ -69,4 +69,30 @@ public class DAOFactory {
 		}
 		return dao;
 	}
+	public static IDAO PartieDAO() {
+		IDAO dao;
+		switch ( mode ) {
+			case "JDBC":
+				dao = new PartieDAO();
+				break;
+			case "JPA":
+			default:
+				//TODO
+				dao = null;
+		}
+		return dao;
+	}
+	public static IDAO JoueurDAO() {
+		IDAO dao;
+		switch ( mode ) {
+			case "JDBC":
+				dao = new JoueurDAO();
+				break;
+			case "JPA":
+			default:
+				//TODO
+				dao = null;
+		}
+		return dao;
+	}
 }

@@ -105,6 +105,7 @@ public class JoueurDAO implements IDAO<Long, Joueur>, IUserDAO<Long, Joueur> {
                         joueur = new Joueur();
                         joueur.setId( rs.getInt("id_joueur"));
                         joueur.setPseudo( rs.getString( "pseudo" ) );
+                        joueur.setId(rs.getInt("id_joueur"));
                         joueur.setPassword( rs.getString( "password" ) );
                     }
                 }
