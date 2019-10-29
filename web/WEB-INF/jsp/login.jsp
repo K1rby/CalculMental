@@ -48,7 +48,6 @@
             <button class="button expanded">Valider</button>
         </form>
     </c:if>
-    <p>${userBean.calculExpression()}</p>
 
 </div>
 <script src="${pageContext.request.contextPath}/vendor/foundation-6.5.1/js/vendor/jquery.js"></script>

@@ -37,7 +37,7 @@
         </tbody>
     </table>
 </div>
-<a href="about.html" class="button">Nouvelle partie</a>
+<a href="<c:url value="/expression" />" class="button">Nouvelle partie</a>
 <script src="${pageContext.request.contextPath}/vendor/foundation-6.5.1/js/vendor/jquery.js"></script>
 <script src="${pageContext.request.contextPath}/vendor/foundation-6.5.1/js/vendor/foundation.min.js"></script>
 <script>

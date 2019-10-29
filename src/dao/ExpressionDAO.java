@@ -18,8 +18,8 @@ public class ExpressionDAO implements IDAO<Long, Expression> {
     private static final String FIND_ALLQUERY = "SELECT * FROM expression";
 
     @Override
-    public void create(Expression object) throws SQLException, IOException, ClassNotFoundException {
-
+    public int create(Expression object) throws SQLException, IOException, ClassNotFoundException {
+        int temp = 0;
         Connection connection = DAOFactory.getJDBCConnection();
         if (connection != null) {
             try (PreparedStatement ps = connection.prepareStatement(INSERT_QUERY, Statement.RETURN_GENERATED_KEYS)) {
@@ -32,10 +32,14 @@ public class ExpressionDAO implements IDAO<Long, Expression> {
                     if (rs.next()) {
                         object.setId(rs.getInt(1));
                     }
-
+                    temp = rs.getInt(1);
                 }
             }
+            if (!connection.isClosed()) {
+                connection.close();
+            }
         }
+        return temp;
     }
 
     @Override

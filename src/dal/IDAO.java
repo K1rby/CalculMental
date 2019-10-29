@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IDAO<ID, E> {
 
-    void create(E object) throws SQLException, IOException, ClassNotFoundException;
+    int create(E object) throws SQLException, IOException, ClassNotFoundException;
 
     void update(E object) throws SQLException, IOException, ClassNotFoundException;
 
