@@ -20,7 +20,7 @@ import java.sql.SQLException;
 public class ExpressionController extends HttpServlet {
 
     private static final String PAGE_EXPRESSION_JSP = "/WEB-INF/jsp/expression.jsp";
-    private static final String PAGE_RESULTATS_JSP = "/WEB-INF/jsp/result.jsp";
+    private static final String PAGE_RESULTATS_JSP = "/resultat";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -75,6 +75,6 @@ public class ExpressionController extends HttpServlet {
             bean.addReponse(Double.parseDouble(req.getParameter( "form-answer" + i )));
         }
         req.getSession().setAttribute("reponse", bean.getReponses());
-        req.getServletContext().getRequestDispatcher(PAGE_RESULTATS_JSP).forward(req, resp);
+        resp.sendRedirect( req.getContextPath() + PAGE_RESULTATS_JSP );
     }
 }
