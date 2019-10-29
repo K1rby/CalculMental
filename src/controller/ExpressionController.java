@@ -20,6 +20,7 @@ import java.sql.SQLException;
 public class ExpressionController extends HttpServlet {
 
     private static final String PAGE_EXPRESSION_JSP = "/WEB-INF/jsp/expression.jsp";
+    private static final String PAGE_RESULTATS_JSP = "/WEB-INF/jsp/result.jsp";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -62,11 +63,18 @@ public class ExpressionController extends HttpServlet {
 
             bean.addResultats(bean.calculExpression());
         }
+        request.getSession().setAttribute("resultat", bean.getResultats());
         request.getServletContext().getRequestDispatcher(PAGE_EXPRESSION_JSP).forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        ExpressionBean bean = (ExpressionBean) req.getSession().getAttribute("expressionBean");
+        int i;
+        for (i = 1; i < 11; i++) {
+            bean.addReponse(Double.parseDouble(req.getParameter( "form-answer" + i )));
+        }
+        req.getSession().setAttribute("reponse", bean.getReponses());
+        req.getServletContext().getRequestDispatcher(PAGE_RESULTATS_JSP).forward(req, resp);
     }
 }
