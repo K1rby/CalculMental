@@ -60,6 +60,18 @@ public class ExpressionBean implements Serializable {
         resultats.add(resultat);
     }
 
+    public void clearResultats(){
+        resultats.clear();
+    }
+
+    public void clearReponses(){
+        reponses.clear();
+    }
+
+    public void clearExpressions(){
+        expressions.clear();
+    }
+
     public String generationExpression(){
         String expression = "";
         String[] op1arg = {"rac", "inv"};
@@ -67,9 +79,10 @@ public class ExpressionBean implements Serializable {
         int count = 0;
         int i;
         int choice;
-        int flag = (int)(Math.random() * 2);
+        int flag;
         Double add;
         for (i = 0; i < 5; i++) {
+            flag = (int)(Math.random() * 2);
             if (count == 0) {
                 add = (double) Math.round((Math.random() * 100) * 100d) / 100d;
                 count++;
@@ -78,7 +91,7 @@ public class ExpressionBean implements Serializable {
                 if (flag == 0) {
                     choice = (int)(Math.random() * 2);
                     expression = expression + op1arg[choice] + " ";
-                    if (i < 3) {
+                    if (i < 4) {
                         flag = 1;
                     }
                 } else {
@@ -92,6 +105,9 @@ public class ExpressionBean implements Serializable {
                 expression = expression + op2arg[choice] + " ";
                 count--;
             }
+        }
+        if (count == 2) {
+
         }
         expression = expression.substring(0, expression.length() -1);
         setCurrentExpression(expression);

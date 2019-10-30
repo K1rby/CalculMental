@@ -29,7 +29,7 @@
 								<i class="fa fa-key"></i>
 							</span>
             <input class="input-group-field" type="number" placeholder="Réponse"
-                   name="form-answer${loop.count}"
+                   name="form-answer${loop.count}" step="any" required
                    value=""/>
         </div>
     </div>

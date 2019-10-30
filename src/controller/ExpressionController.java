@@ -71,10 +71,13 @@ public class ExpressionController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ExpressionBean bean = (ExpressionBean) req.getSession().getAttribute("expressionBean");
         int i;
+        boolean check = true;
         for (i = 1; i < 11; i++) {
-            bean.addReponse(Double.parseDouble(req.getParameter( "form-answer" + i )));
+            if ((req.getParameter( "form-answer" + i )) != null) {
+                bean.addReponse(Double.parseDouble(req.getParameter( "form-answer" + i )));
+            }
         }
-        req.getSession().setAttribute("reponse", bean.getReponses());
-        resp.sendRedirect( req.getContextPath() + PAGE_RESULTATS_JSP );
+         req.getSession().setAttribute("reponse", bean.getReponses());
+         resp.sendRedirect( req.getContextPath() + PAGE_RESULTATS_JSP );
     }
 }

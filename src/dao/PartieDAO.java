@@ -37,6 +37,9 @@ public class PartieDAO implements IDAO<Long, Partie>, IPartieDAO<Long, Partie> {
                     temp =  rs.getInt(1);
                 }
             }
+            if (!connection.isClosed()) {
+                connection.close();
+            }
         }
         return temp;
     }
