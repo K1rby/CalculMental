@@ -1,5 +1,6 @@
 package controller;
 
+import model.ExpressionBean;
 import model.HomeBean;
 
 import javax.servlet.ServletException;
@@ -16,6 +17,12 @@ public class HomeController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
+        if ((ExpressionBean) req.getSession().getAttribute("expressionBean") != null) {
+            ExpressionBean expBean = (ExpressionBean) req.getSession().getAttribute("expressionBean");
+            expBean.clearReponses();
+            expBean.clearResultats();
+            expBean.clearExpressions();
+        }
 
         HomeBean bean = new HomeBean();
         req.setAttribute( "homeBean", bean );
