@@ -12,7 +12,7 @@ import java.util.*;
 
 public class ResultBean implements Serializable {
 
-    private HashMap<Double, Double> resultReponse = new HashMap<>();
+    private LinkedHashMap<Double, Double> resultReponse = new LinkedHashMap<>();
     private Partie partie = new Partie();
     private List<Double> reponse = new ArrayList<>();
     private List<Double> resultat = new ArrayList<>();
@@ -27,11 +27,11 @@ public class ResultBean implements Serializable {
         this.partie = partie;
     }
 
-    public HashMap<Double, Double> getResultReponse() {
+    public LinkedHashMap<Double, Double> getResultReponse() {
         return resultReponse;
     }
 
-    public void setResultReponse(HashMap<Double, Double> resultReponse) {
+    public void setResultReponse(LinkedHashMap<Double, Double> resultReponse) {
         this.resultReponse = resultReponse;
     }
 
