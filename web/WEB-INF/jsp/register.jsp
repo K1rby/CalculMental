@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <title>Title</title>
@@ -22,21 +24,21 @@
 								<span class="input-group-label">
 									<i class="fa fa-user"></i>
 								</span>
-            <input class="input-group-field" type="text" placeholder="Login" name="form-username"
+            <input required class="input-group-field" type="text" placeholder="Login" name="form-username"
                    value=""/>
         </div>
         <div class="input-group">
 								<span class="input-group-label">
 									<i class="fa fa-key"></i>
 								</span>
-            <input class="input-group-field" type="password" placeholder="Mot de passe"
+            <input required class="input-group-field" type="password" placeholder="Mot de passe"
                    name="form-password"
                    value=""/>
         </div><div class="input-group">
 								<span class="input-group-label">
 									<i class="fa fa-key"></i>
 								</span>
-            <input class="input-group-field" type="password" placeholder="confirmation Mot de passe"
+            <input required class="input-group-field" type="password" placeholder="confirmation Mot de passe"
                    name="form-password-confirm"
                    value=""/>
         </div>

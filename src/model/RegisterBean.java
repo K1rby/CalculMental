@@ -45,7 +45,7 @@ public class RegisterBean implements Serializable {
                     e.printStackTrace();
                 }
             } catch ( SQLException e ) {
-                authResult = "Identification échouée : Pb de connexions à la base de données !";
+                authResult = "Pb de connexions à la base de données !";
             }
         }
         else {
