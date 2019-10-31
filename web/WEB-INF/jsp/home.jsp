@@ -15,6 +15,13 @@
     <div class="top-bar-left">
         <ul class="dropdown menu" data-dropdown-menu>
             <li class="menu-text">Accueil</li>
+            <li class="has-submenu">
+                <a href="#0">Mon compte</a>
+                <ul class="submenu menu vertical" data-submenu>
+                    <li><a href="<c:url value="/account/score"/>">Mes meilleurs scores</a></li>
+                    <li><a href="<c:url value="/account/details"/>">Modifier mes informations</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
     <div class="top-bar-right">
@@ -24,8 +31,7 @@
         </ul>
     </div>
 </div>
-<div class="row small-5 small-centered">
-    <h1>Meilleurs Scores</h1>
+<div class="row small-5 small-centered" style="margin-top: 7%">
     <table>
         <thead>
         <tr>
@@ -63,7 +69,7 @@
         </c:forEach>
         </tbody>
     </table>
-    <a href="<c:url value="/expression" />" class="button">Nouvelle partie</a>
+    <a style="width: 100%" href="<c:url value="/expression" />" class="button">Nouvelle partie</a>
 </div>
 <script src="${pageContext.request.contextPath}/vendor/foundation-6.5.1/js/vendor/jquery.js"></script>
 <script src="${pageContext.request.contextPath}/vendor/foundation-6.5.1/js/vendor/foundation.min.js"></script>

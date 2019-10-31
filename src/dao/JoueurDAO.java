@@ -13,9 +13,9 @@ import java.util.List;
 public class JoueurDAO implements IDAO<Long, Joueur>, IUserDAO<Long, Joueur> {
 
     private static final String INSERT_QUERY = "INSERT INTO joueur (pseudo, password ) VALUES (?, ?)";
-    private static final String UPDATE_QUERY = "UPDATE joueur SET pseudo = ?, password = ? WHERE id = ?";
-    private static final String DELETE_QUERY = "DELETE FROM agence WHERE id= ?";
-    private static final String FIND_QUERY = "SELECT * FROM agence WHERE id= ?";
+    private static final String UPDATE_QUERY = "UPDATE joueur SET pseudo = ?, password = ? WHERE id_joueur = ?";
+    private static final String DELETE_QUERY = "DELETE FROM joueur WHERE id= ?";
+    private static final String FIND_QUERY = "SELECT * FROM joueur WHERE id= ?";
     private static final String FIND_ALLQUERY = "SELECT * FROM joueur";
     private static final String AUTHENT_QUERY = "SELECT * FROM joueur WHERE pseudo = ? AND password = ?";
 
@@ -38,6 +38,9 @@ public class JoueurDAO implements IDAO<Long, Joueur>, IUserDAO<Long, Joueur> {
                 }
             }
         }
+        if (!connection.isClosed()) {
+            connection.close();
+        }
         return temp;
     }
 
@@ -54,6 +57,9 @@ public class JoueurDAO implements IDAO<Long, Joueur>, IUserDAO<Long, Joueur> {
                 ps.setInt(3, object.getId());
                 ps.executeUpdate();
             }
+        }
+        if (!connection.isClosed()) {
+            connection.close();
         }
     }
 
