@@ -12,14 +12,10 @@
 </head>
 <body>
 <div class="top-bar" id="example-menu">
-    <div class="top-bar-left">
-        <ul class="dropdown menu" data-dropdown-menu>
-            <li class="menu-text">Accueil</li>
-        </ul>
-    </div>
     <div class="top-bar-right">
         <ul class="menu">
             <li class="menu-text">${sessionScope.login}</li>
+            <a href="<c:url value="/logout"/>">Déconnexion</a>
         </ul>
     </div>
 </div>

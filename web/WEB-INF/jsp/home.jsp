@@ -14,7 +14,6 @@
 <div class="top-bar" id="example-menu">
     <div class="top-bar-left">
         <ul class="dropdown menu" data-dropdown-menu>
-            <li class="menu-text">Accueil</li>
             <li class="has-submenu">
                 <a href="#0">Mon compte</a>
                 <ul class="submenu menu vertical" data-submenu>

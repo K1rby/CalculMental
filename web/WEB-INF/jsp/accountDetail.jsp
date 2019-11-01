@@ -26,7 +26,7 @@
 <div class="row small-5 small-centered">
     <c:if test="${ !empty accountBean.authResult}">
         <div class="callout alert text-center">
-            <p>${requestScope.registerBean.authResult}</p>
+            <p>${requestScope.accountBean.authResult}</p>
         </div>
     </c:if>
     <form method="POST" action="${pageContext.request.contextPath}/account/details">
