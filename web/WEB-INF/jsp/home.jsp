@@ -31,6 +31,7 @@
     </div>
 </div>
 <div class="row small-5 small-centered" style="margin-top: 7%">
+    <h3 class="text-center">Les 10 meilleurs scores</h3>
     <table>
         <thead>
         <tr>
