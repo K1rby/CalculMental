@@ -13,8 +13,8 @@ public class ExpressionDAO implements IDAO<Long, Expression> {
 
     private static final String INSERT_QUERY = "INSERT INTO expression (expression, id_partie ) VALUES (?, ?)";
     private static final String UPDATE_QUERY = "UPDATE expression SET expression = ?, id_partie = ? WHERE id = ?";
-    private static final String DELETE_QUERY = "DELETE FROM agence WHERE id= ?";
-    private static final String FIND_QUERY = "SELECT * FROM agence WHERE id= ?";
+    private static final String DELETE_QUERY = "DELETE FROM expression WHERE id= ?";
+    private static final String FIND_QUERY = "SELECT * FROM expression WHERE id= ?";
     private static final String FIND_ALLQUERY = "SELECT * FROM expression";
 
     @Override

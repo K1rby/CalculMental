@@ -15,8 +15,9 @@ public class PartieDAO implements IDAO<Long, Partie>, IPartieDAO<Long, Partie> {
     private static final String INSERT_QUERY = "INSERT INTO partie (score, id_joueur ) VALUES (?, ?)";
     private static final String UPDATE_QUERY = "UPDATE partie SET score = ?, id_joueur = ? WHERE id = ?";
     private static final String TOP_SCORE_QUERY = "SELECT score from partie order by score DESC limit 10";
-    private static final String DELETE_QUERY = "DELETE FROM agence WHERE id= ?";
-    private static final String FIND_QUERY = "SELECT * FROM agence WHERE id= ?";
+    private static final String TOP_SCORE_JOUEUR_QUERY = "SELECT score from partie where id_joueur = ? order by score DESC limit 10";
+    private static final String DELETE_QUERY = "DELETE FROM partie WHERE id= ?";
+    private static final String FIND_QUERY = "SELECT * FROM partie WHERE id= ?";
     private static final String FIND_ALLQUERY = "SELECT * FROM partie";
 
     @Override
@@ -112,6 +113,34 @@ public class PartieDAO implements IDAO<Long, Partie>, IPartieDAO<Long, Partie> {
                     }
                 }
             }
+        }
+        if (!connection.isClosed()) {
+            connection.close();
+        }
+        return list;
+    }
+    @Override
+    public List<Partie> topScoreJoueur(Long id) throws SQLException {
+
+        List<Partie> list = new ArrayList<>();
+        Connection connection = DAOFactory.getJDBCConnection();
+
+        if (connection != null) {
+
+            try(PreparedStatement ps = connection.prepareStatement(TOP_SCORE_JOUEUR_QUERY)) {
+                ps.setLong(1, id);
+                try(ResultSet rs = ps.executeQuery()) {
+
+                    while (rs.next()) {
+                        Partie partie = new Partie();
+                        partie.setScore(rs.getInt("score"));
+                        list.add(partie);
+                    }
+                }
+            }
+        }
+        if (!connection.isClosed()) {
+            connection.close();
         }
         return list;
     }

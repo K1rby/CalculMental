@@ -12,18 +12,14 @@
 </head>
 <body>
 <div class="top-bar" id="example-menu">
-    <div class="top-bar-left">
-        <ul class="dropdown menu" data-dropdown-menu>
-            <li class="menu-text">Accueil</li>
-        </ul>
-    </div>
     <div class="top-bar-right">
         <ul class="menu">
             <li class="menu-text">${sessionScope.login}</li>
+            <a href="<c:url value="/logout"/>">Déconnexion</a>
         </ul>
     </div>
 </div>
-<div class="row small-5 small-centered">
+<div class="row small-5 small-centered" style="margin-top: 4%">
     <table>
         <thead>
         <tr>
@@ -51,8 +47,8 @@
         </c:forEach>
         </tbody>
     </table>
-    <h1>Bravo, vous avez réaliser un score de ${score}</h1>
-    <a href="<c:url value="/home"/>" class="button">Retour a l'accueil</a>
+    <a style="width: 100%" href="<c:url value="/home"/>" class="button">Retour a l'accueil</a>
+    <h2>Vous avez réaliser un score de ${score}</h2>
 </div>
 <script src="${pageContext.request.contextPath}/vendor/foundation-6.5.1/js/vendor/jquery.js"></script>
 <script src="${pageContext.request.contextPath}/vendor/foundation-6.5.1/js/vendor/foundation.min.js"></script>

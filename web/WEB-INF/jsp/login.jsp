@@ -46,7 +46,7 @@
                 </div>
             </div>
             <button class="button expanded">Valider</button>
-            <a href="<c:url value="/register"/>">Vous n'avez pas de compte?</a>
+            <a style="margin-left: 37%" href="<c:url value="/register"/>">Vous n'avez pas de compte?</a>
         </form>
     </c:if>
 

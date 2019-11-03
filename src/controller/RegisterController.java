@@ -1,7 +1,6 @@
 package controller;
 
 import model.RegisterBean;
-import model.UserBean;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +13,7 @@ import java.io.IOException;
 public class RegisterController extends HttpServlet {
 
     private static final String PAGE_REGISTER_JSP = "/WEB-INF/jsp/register.jsp";
-    private static final String PAGE_LOGIN_JSP = "/WEB-INF/jsp/login.jsp";
+    private static final String PAGE_LOGIN_JSP = "/login";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
@@ -25,7 +24,6 @@ public class RegisterController extends HttpServlet {
             req.setAttribute( "registerBean", bean );
         }
         req.getServletContext().getRequestDispatcher( PAGE_REGISTER_JSP ).forward( req, resp );
-        resp.sendRedirect( req.getContextPath() + PAGE_LOGIN_JSP );
     }
 
     @Override
@@ -34,6 +32,11 @@ public class RegisterController extends HttpServlet {
         RegisterBean bean = new RegisterBean();
         bean.register( request );
         request.setAttribute( "registerBean", bean );
-        doGet( request, response );
+        if (bean.getAuthResult() == null) {
+            response.sendRedirect( request.getContextPath() + PAGE_LOGIN_JSP );
+        }
+        else {
+            request.getServletContext().getRequestDispatcher( PAGE_REGISTER_JSP ).forward( request, response );
+        }
     }
 }
