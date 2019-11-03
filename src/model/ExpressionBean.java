@@ -1,11 +1,11 @@
 package model;
 
 import bo.Expression;
+import bo.Operateur;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 public class ExpressionBean implements Serializable {
 
@@ -13,8 +13,17 @@ public class ExpressionBean implements Serializable {
     private List<Double> reponses = new ArrayList<>();
     private List<Double> resultats = new ArrayList<>();
     private String currentExpression;
+    private Operateur operateur = new Operateur();
 
     public ExpressionBean() {}
+
+    public Operateur getOperateur() {
+        return operateur;
+    }
+
+    public void setOperateur(Operateur operateur) {
+        this.operateur = operateur;
+    }
 
     public String getCurrentExpression() {
         return currentExpression;
@@ -117,64 +126,12 @@ public class ExpressionBean implements Serializable {
     public Double calculExpression() {
         String expression = getCurrentExpression();
         String []array = expression.split(" ", 6);
-        Stack<Double> stack = new Stack<Double>();
         Double resultat;
 
-        Double intA = 0.0;
-        Double intB = 0.0;
-        Double c;
         for (String a : array) {
-            switch (a){
-                case "rac":
-                    intA = stack.peek();
-                    stack.pop();
-                    c = Math.sqrt(intA);
-                    stack.push(c);
-                    break;
-                case "inv":
-                    intA = stack.peek();
-                    stack.pop();
-                    intA *= -1;
-                    stack.push(intA);
-                    break;
-                case "+":
-                    intA = stack.peek();
-                    stack.pop();
-                    intB = stack.peek();
-                    stack.pop();
-                    c = intA + intB;
-                    stack.push(c);
-                    break;
-                case "-":
-                    intA = stack.peek();
-                    stack.pop();
-                    intB = stack.peek();
-                    stack.pop();
-                    c = intA - intB;
-                    stack.push(c);
-                    break;
-                case "*":
-                    intA = stack.peek();
-                    stack.pop();
-                    intB = stack.peek();
-                    stack.pop();
-                    c = intA * intB;
-                    stack.push(c);
-                    break;
-                case "/":
-                    intA = stack.peek();
-                    stack.pop();
-                    intB = stack.peek();
-                    stack.pop();
-                    c = intA / intB;
-                    stack.push(c);
-                    break;
-                default:
-                    stack.push(Double.parseDouble(a));
-                    break;
-            }
+            operateur.TestOperateur(a);
         }
-        resultat = stack.peek();
+        resultat = operateur.getStack().peek();
         return resultat;
     }
 }
